@@ -7,12 +7,13 @@
 
 int main(void)
 {
-	char input_command[256];
+	char input[256];
 
 	while (1)
 	{
 		display_output();
-		to_execute(execute);
+		to_execute(input);
+		to_readinput(input, sizeof(input));
 	}
 
 	return (0);

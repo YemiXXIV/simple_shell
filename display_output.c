@@ -1,7 +1,12 @@
 #include "theshell.h"
 
-void display output(void)
+/**
+ * display_output - A function that displays the output
+ * Return: 0
+ */
+
+void display_output(void)
 {
-	to_print("the_shell$ ");
+	write(1,"the_shell$ ", 10); 
 }
 

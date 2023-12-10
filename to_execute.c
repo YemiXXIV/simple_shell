@@ -2,23 +2,23 @@
 
 /**
  * to_execute - A function that executes a child process
- * @execute: The command to be executed
+ * @input: The command to be executed
  *
  */
 
-void to_execute(const char *execute)
+void to_execute(const char *input)
 {
-	pid_t sibling_pid = fork();
+	pid_t child_pid = fork();
 
-	if (sibling_pid == -1)
+	if (child_pid == -1)
 	{
 		write(2, "Error in forking process.\n",
 		      strlen("Error in forking process.\n"));
 		exit(EXIT_FAILURE);
 	}
-	else if (sibling_pid == 0)
+	else if (child_pid == 0)
 	{
-		if (execlp("/bin/sh", "/bin/sh", "-c", execute, NULL) == -1)
+		if (execlp("/bin/sh", "/bin/sh", "-c", input, NULL) == -1)
 		{
 			write(2, "Error in executing the command.\n",
 			      strlen("Error in executing the command.\n"));
