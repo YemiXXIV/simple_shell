@@ -11,6 +11,7 @@
 #include <fcntl.h>
 #include <errno.h>
 
+/** 
 #define RD_BUFFER_SIZE 1024
 #define WRITE_BUFFER_SIZE 1024
 #define EMPTY_BUFFER -1
@@ -29,12 +30,11 @@
 extern char **environ;
 
 
-/**
  * struct liststring - singly linked list
  * @num: Number
  * @str: The string
  * @next: Pointer to the next node
- */
+ *
 typedef struct liststr
 {
 	int num;
@@ -94,7 +94,7 @@ int sh_put_err_char(char c);
 int sh_putfs(char c, int fs);
 int sh_putsfs(char *str, int fs);
 int sh_erratoi(char *s);
-void sh_pr_err(info_t *info, char *fstr);
+void sh_pr_err(p_info_t *info, char *fstr);
 int sh_pr_d(int input, int fd);
 char *sh_convert_number(long int num, int base, int flags);
 void sh_rem_comments(char *buf);
@@ -107,11 +107,11 @@ ssize_t sh_input_buf(p_info_t *p_info, char **buf, size_t *len);
 ssize_t sh_get_input(p_info_t *p_info);
 ssize_t sh_read_buf(p_info_t *p_info, char *buf, size_t *i);
 int sh_get_line(p_info_t *p_info, char **ptr, size_t *len);
-void sh_sigint_handler(__atteribute__((unused))int sig_num);
+void sh_sigint_handler(__attribute__((unused))int sig_num);
 
-char **sh_get_env(p_info_t *p_info);
+
 int sh_setenv(p_info_t *p_info, char *var, char *value);
-int sh_unsetenv(p_info_t *p_info, char *var);
+int sh_unsetenv(p_info_t *p_info, char *var); **/
 
 
 void display_output(void);
@@ -119,8 +119,8 @@ void to_print(const char *prompt);
 void to_execute(const char *input);
 void to_readinput(char *input, size_t size);
 int main(void);
-int shFree(void **ptr);
+/*int shFree(void **ptr);
 char **shBreakString(char *str, char *delim);
-char **shBreakString2(char *str, char delim);
+char **shBreakString2(char *str, char delim);*/
 
 #endif
