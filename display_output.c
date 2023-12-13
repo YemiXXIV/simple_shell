@@ -7,6 +7,10 @@
 
 void display_output(void)
 {
-	write(1, "the_shell$ ", 10);
+<<<<<<< HEAD
+	write(1, "$ ", 1);
+=======
+	write(1,"$ ", 1); 
+>>>>>>> ed54299bb67554b5775833440b8ad7e24685e75b
 }
 
