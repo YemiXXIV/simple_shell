@@ -12,8 +12,8 @@ int main(void)
 	while (1)
 	{
 		display_output();
-		to_execute(input);
 		to_readinput(input, sizeof(input));
+		to_execute(input);
 	}
 
 	return (0);
