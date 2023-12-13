@@ -7,6 +7,6 @@
 
 void display_output(void)
 {
-	write(1," ", 0); 
+	write(1,"$ ", 1); 
 }
 
