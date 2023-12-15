@@ -4,29 +4,42 @@
  * to_execute - A function that executes a child process
  * @input: The command to be executed
  *
+ * Return: 0 on success, -1 if otherwise
  */
 
-void to_execute(const char *input)
+int to_execute(char *input)
 {
-	pid_t child_pid = fork();
+	pid_t pid;
+	int status;
 
-	if (child_pid == -1)
+	char **args = malloc(2 * sizeof(char *));
+
+	args[0] = input;
+	args[1] = NULL;
+
+	pid = fork();
+
+	if (pid == 0)
 	{
-		write(2, "Error in forking process.\n",
-		      strlen("Error in forking process.\n"));
-		exit(EXIT_FAILURE);
-	}
-	else if (child_pid == 0)
-	{
-		if (execlp("/bin/sh", "/bin/sh", "-c", input, NULL) == -1)
+		if (execve(args[0], args, NULL) == -1)
 		{
-			write(2, "Error in executing the command.\n",
-			      strlen("Error in executing the command.\n"));
+			perror("Error");
 			exit(EXIT_FAILURE);
 		}
 	}
+	else if (pid < 0)
+	{
+		perror("Error");
+		free(args);
+		return (-1);
+	}
 	else
 	{
-		wait(NULL);
+		do {
+			waitpid(pid, &status, WUNTRACED);
+		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
+
+	free(args);
+	return (0);
 }

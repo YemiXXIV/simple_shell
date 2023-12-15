@@ -7,13 +7,19 @@
 
 int main(void)
 {
-	char input[256];
+	char *input;
 
 	while (1)
 	{
 		display_output();
-		to_readinput(input, sizeof(input));
-		to_execute(input);
+		input = to_readinput();
+
+		if (input != NULL)
+		{
+			if (to_execute(input) == -1)
+				perror("Error");
+			free(input);
+		}
 	}
 
 	return (0);
