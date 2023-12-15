@@ -12,7 +12,7 @@ int to_execute(char *input)
 	pid_t pid;
 	int status;
 
-	char **args = malloc(2 * sizeof(char *));
+	char *args[2];
 
 	args[0] = input;
 	args[1] = NULL;
@@ -26,20 +26,18 @@ int to_execute(char *input)
 			perror("Error");
 			exit(EXIT_FAILURE);
 		}
+		_exit(EXIT_SUCCESS);
 	}
 	else if (pid < 0)
 	{
 		perror("Error");
-		free(args);
 		return (-1);
 	}
 	else
 	{
-		do {
-			waitpid(pid, &status, WUNTRACED);
-		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
+		waitpid(pid, &status, WUNTRACED);
 	}
 
-	free(args);
 	return (0);
+
 }
