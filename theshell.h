@@ -11,6 +11,9 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <sys/types.h>
+#include <signal.h>
+
+#define MAX_INPUT_LENGTH 100
 
 void display_output(void);
 int to_execute(char *input);

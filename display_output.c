@@ -7,6 +7,6 @@
 
 void display_output(void)
 {
-	write(STDOUT_FILENO, "$theshell ", 2);
+	write(STDOUT_FILENO, "$theshell ", 10);
 }
 

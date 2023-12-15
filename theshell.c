@@ -8,18 +8,21 @@
 int main(void)
 {
 	char *input;
+	size_t length;
 
 	while (1)
 	{
 		display_output();
 		input = to_readinput();
+		length = strlen(input);
 
-		if (input != NULL)
+		if (length > 0 && input[length - 1] == '\n')
 		{
-			if (to_execute(input) == -1)
-				perror("Error");
-			free(input);
+			input[length - 1] = '\0';
 		}
+		to_execute(input);
+
+		free(input);
 	}
 
 	return (0);
