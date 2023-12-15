@@ -19,5 +19,6 @@ void display_output(void);
 int to_execute(char *input);
 char *to_readinput(void);
 int main(void);
+size_t parse_input(char *input, char *args[]);
 
 #endif

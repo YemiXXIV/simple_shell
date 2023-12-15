@@ -11,11 +11,17 @@ int to_execute(char *input)
 {
 	pid_t pid;
 	int status;
+	char *args[MAX_INPUT_LENGTH];
 
-	char *args[2];
+	char *input_copy = strdup(input);
 
-	args[0] = input;
-	args[1] = NULL;
+	if (input_copy == NULL)
+	{
+		perror("Error");
+		return (-1);
+	}
+
+	parse_input(input, args);
 
 	pid = fork();
 
@@ -24,6 +30,7 @@ int to_execute(char *input)
 		if (execve(args[0], args, NULL) == -1)
 		{
 			perror("Error");
+			free(input_copy);
 			exit(EXIT_FAILURE);
 		}
 		_exit(EXIT_SUCCESS);
@@ -31,6 +38,7 @@ int to_execute(char *input)
 	else if (pid < 0)
 	{
 		perror("Error");
+		free(input_copy);
 		return (-1);
 	}
 	else
@@ -38,6 +46,6 @@ int to_execute(char *input)
 		waitpid(pid, &status, WUNTRACED);
 	}
 
+	free(input_copy);
 	return (0);
-
 }
