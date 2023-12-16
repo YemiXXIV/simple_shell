@@ -12,9 +12,16 @@ int main(void)
 	while (1)
 	{
 		input = to_readinput();
-		to_execute(input);
 
-		free(input);
+		if (input != NULL)
+		{
+			to_execute(input);
+			free(input);
+		}
+		else
+		{
+			exit(EXIT_FAILURE);
+		}
 	}
 
 	return (0);

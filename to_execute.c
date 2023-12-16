@@ -23,17 +23,17 @@ int to_execute(char *input)
 
 	parse_input(input, args);
 
+	if (strcmp(args[0], "exit") == 0)
+	{
+		free(input_copy);
+		handle_exit();
+	}
+
 	pid = fork();
 
 	if (pid == 0)
 	{
-		if (execve(args[0], args, NULL) == -1)
-		{
-			perror("Error");
-			free(input_copy);
-			exit(EXIT_FAILURE);
-		}
-		_exit(EXIT_SUCCESS);
+		execute_command(args);
 	}
 	else if (pid < 0)
 	{
