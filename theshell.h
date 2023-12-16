@@ -15,7 +15,6 @@
 
 #define MAX_INPUT_LENGTH 100
 
-void display_output(void);
 int to_execute(char *input);
 char *to_readinput(void);
 int main(void);

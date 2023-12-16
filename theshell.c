@@ -11,7 +11,6 @@ int main(void)
 
 	while (1)
 	{
-		display_output();
 		input = to_readinput();
 		to_execute(input);
 
